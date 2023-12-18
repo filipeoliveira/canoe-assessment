@@ -11,7 +11,7 @@
 - There are 4 filters available on the funds list all method: `api/funds`
     - name, manager_id, manager_name, and start_year
 - The filtering here is case insensitive for a better user experience -- That's why there is a usage of `ILIKE`
-- For more information please check the following file: (FundQueryBuilder.php)[../canoe-app/app/QueryBuilders/FundQueryBuilder.php]
+- For more information please check the following file: `FundQueryBuilder.php`
 
 
 ## Event-driven processess
