@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  canoe-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres-database:
+        condition: service_healthy
+    environment:
+      DB_CONNECTION: pgsql
+      DB_HOST: postgres-database
+      DB_PORT: 5432
+      DB_DATABASE: canoe-database
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+    networks:
+      - canoe-network
+    volumes:
+        - ./canoe-app:/var/www/html
+  
+  postgres-database:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: canoe-database
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - canoe-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 7s
+      timeout: 5s
+      retries: 5
+
+networks:
+  canoe-network:
+    driver: bridge
+
