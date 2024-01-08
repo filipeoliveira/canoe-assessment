@@ -12,6 +12,16 @@ Before running this project, ensure that you have the following prerequisites in
 
 Ensure that both Docker and Docker Compose are installed and properly set up on your machine before proceeding.
 
+# Running
+To run this project, just do: `docker compose up` on the root folder of this project.
+It will download all the necessary docker images and will spin up the database service, populate the database with fake data (seed) and spin up the laravel backend service.
+
+It's ready when the following message is presented:
+
+```
+canoe-app-1          |    INFO  Server running on [http://0.0.0.0:8000].  
+```
+
 ## Schema information
   - [ER Diagram and information](docs/entity-relationship-diagram.md)
 
